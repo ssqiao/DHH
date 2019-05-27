@@ -1,0 +1,64 @@
+#include <vector>
+
+#include "caffe/layers/lgd_loss_layer.hpp"
+#include "caffe/util/math_functions.hpp"
+
+namespace caffe {
+
+template <typename Dtype> 
+void LgdLossLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
+    const vector<Blob<Dtype>*>& top) {
+  const int count = bottom[0]->count()/bottom[0]->num();
+  const Dtype alpha = 2*top[0]->cpu_diff()[0] / bottom[0]->num()/(bottom[0]->num()-1);
+  caffe_gpu_set(bottom[0]->count(),Dtype(0.),bottom[0]->mutable_gpu_diff());
+  //caffe_gpu_set(diff_.count(),Dtype(0.),diff_.mutable_gpu_data());
+  //caffe_gpu_set(realLoss_.count(),Dtype(0.),realLoss_.mutable_gpu_data());
+  Dtype loss = 0.;
+  for(int i = 0; i < bottom[0]->num(); i++) {
+	  int offset_a = bottom[0]->offset(i);
+	  for(int j = i+1; j < bottom[0]->num(); j++) {
+		  int offset_b = bottom[0]->offset(j);
+		  caffe_gpu_sub(
+          count,
+          bottom[0]->gpu_data()+offset_a,
+          bottom[0]->gpu_data()+offset_b,
+          diff_.mutable_gpu_data());
+          Dtype dot = 0.;
+		  caffe_gpu_dot(count, diff_.gpu_data(), diff_.gpu_data(),&dot);
+		  dot = dot - bottom[1]->cpu_data()[i*bottom[0]->num()+j];
+		  loss += abs(dot);
+		  
+		  Dtype sign = (dot >= 0) ? 1 : -1;
+		  
+		  caffe_gpu_axpby(
+			count,
+			alpha*sign,
+			diff_.gpu_data(),
+			Dtype(1.0),
+			bottom[0]->mutable_gpu_diff()+offset_a);
+		 
+	      caffe_gpu_axpby(
+			count,
+			-alpha*sign,
+			diff_.gpu_data(),
+			Dtype(1.0),
+			bottom[0]->mutable_gpu_diff()+offset_b);			
+	  }
+  }
+  
+  loss = loss / bottom[0]->num() / (bottom[0]->num()-1);
+  top[0]->mutable_cpu_data()[0] = loss;
+}
+
+template <typename Dtype>
+void LgdLossLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
+    const vector<bool>& propagate_down, const vector<Blob<Dtype>*>& bottom) {
+  if (propagate_down[1]) {
+    LOG(FATAL) << this->type()
+               << " Layer cannot backpropagate to label inputs.";
+  }	
+}
+
+INSTANTIATE_LAYER_GPU_FUNCS(LgdLossLayer);
+
+}  // namespace caffe
