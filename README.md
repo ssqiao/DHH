@@ -17,10 +17,19 @@ BLAS lib: Intel MKL V2017.1.132
 The compiling process is the same as caffe. You can refer to Caffe installation instructions.
 
 # Datasets
+We use YTC, PB and a subset with 200 subjects of UMDFaces dataset in our experiments. We have preprocessed these three datasets. You can download them here. As for COCO dataset, we use COCO 2014, which can be downloaded here (BaiduCloud drive). And in the future, we will provide a download link on google drive. After downloading, you need to covert them to the LMDB format which is a more efficient data storage technique.
+
+For video modality, you 
+
+For image modality, you 
 
 # Training
+We place the prototxt files . First, you need to download the AlexNet pre-trained model on ImageNet from here and move it to ./models/bvlc_reference_caffenet. Then, you can train the model for each dataset using the followling command
 
 # Evaluation
+You can evaluate the Mean Average Precision(MAP) result on each dataset using the followling command.
+
+We provide some trained models for each dataset for each code length in our experiment for evaluation. You can download them here if you want to use them.
 
 # Contact
 If you have any problem about our code, feel free to contact shishi.qiao@vipl.ict.ac.cn or describe your problem in Issues.
