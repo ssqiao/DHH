@@ -23,14 +23,21 @@ BLAS lib: Intel MKL V2017.1.132
 The compiling process is the same as caffe. You can refer to Caffe installation instructions [here](http://caffe.berkeleyvision.org/installation.html).
 
 # Datasets
-We use YTC, PB and a subset with 200 subjects of UMDFaces dataset in our experiments. We have preprocessed these three datasets. You can download them here. As for COCO dataset, we use COCO 2014, which can be downloaded here (BaiduCloud drive). And in the future, we will provide a download link on google drive. After downloading, you need to covert them to the LMDB format which is a more efficient data storage technique.
+We use YTC, PB and a subset with 200 subjects of UMDFaces dataset in our experiments. We have preprocessed these three datasets and provide both the raw images and the coverted lmdb files for direct training and testing. You can download them [here](https://pan.baidu.com/s/1lVWcqujE8kMUqQLTIAEBzw) using the extracted codes：zic7 (BaiduCloud drive). And in the future, we will provide a download link on google drive.
 
-For video modality, you 
+After downloading, you can directly use the lmdb files for training and testing our method. Also you can covert the raw images together with split txt files to the LMDB format as we have provided for you.
 
-For image modality, you 
+For video modality, you can use the following command for PB dataset as an example to convert the video clips:
+
+For image modality, you can use the following command for PB dataset as an example to convert the still images:
 
 # Training
-We place the prototxt files in the prototxt folder. First, you need to download the pre-trained model from here and move it to ./models/. Then, you can train the model for each dataset using the followling command
+We place the solver and net prototxt files in the prototxt folder. First, you need to download the pre-trained classification model for initilizing our method from [here](https://pan.baidu.com/s/1lVWcqujE8kMUqQLTIAEBzw) using the extracted codes：zic7 (BaiduCloud drive) and move it to ./models/. Then, you need to modify the corresponding paths in the solver and net prototxt files. Finaly, you can train the model for each dataset using the followling command:
+'''
+./build/tools/caffe train --solver ./prototxt/PB/solver_dhh_12.prototxt --weights ./models/PB/pb_classification_iter_5000.caffemodel
+'''
+
+After this step, you can further improve the cross-modality retrieval performance 
 
 # Evaluation
 You can evaluate the Mean Average Precision(MAP) result on each dataset using the followling command.
