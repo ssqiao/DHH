@@ -36,30 +36,30 @@ For image modality, you can use the following command for PB dataset as an examp
 ```
 
 # Training
-We place the solver and net prototxt files in the prototxt folder. First, you need to download the pre-trained classification model for initilizing our method from [here](https://pan.baidu.com/s/1lVWcqujE8kMUqQLTIAEBzw) using the extracted codes：zic7 (BaiduCloud drive) and move it to ./models/. Then, you need to modify the corresponding paths in the solver and net prototxt files. Finaly, you can train the model for each dataset using the followling command:
+We place the solver and net prototxt files in the prototxt folder. First, you need to download the pre-trained classification model [here](https://pan.baidu.com/s/1lVWcqujE8kMUqQLTIAEBzw) using the extracted codes：zic7 (BaiduCloud drive) for initilizing DHH and move it to ./models/. Then, you need to modify the corresponding paths in the solver and net prototxt files. Finaly, you can train DHH for each dataset using the followling command (here we use PB as an example):
 ```
 ./build/tools/caffe train --solver ./prototxt/PB/solver_dhh_12.prototxt --weights ./models/PB/pb_classification_iter_5000.caffemodel
 ```
 
-After this step, you can further improve the cross-modality retrieval performance by finetuning the model with only the inter-space triplet loss:
+After this step, you can further improve the cross-modality retrieval performance by finetuning the trained model above with only the inter-space triplet loss:
 ```
 ./build/tools/caffe train --solver ./prototxt/PB/solver_dhh_cross_12.prototxt --weights path/to/your trained dhh model in above step
 ```
 
 # Evaluation
-You can evaluate the Mean Average Precision(MAP) result on each dataset with the provided evaluation scripts in matlab. First, you need to extract the binary codes and labels of videos and images using the following command:
+You can evaluate the mean Average Precision(mAP) result on each dataset with our provided evaluation scripts in matlab. First, you need to extract the binary codes and labels of videos and images using the following command (PB as an example):
 ```
-./build/tools/extract_features_binary path/to/trained DHH models ./prototxt/PB/train_val_dhh_12.txt  ip1 (hash layer output of videos) path/to/save binary file
+./build/tools/extract_features_binary   path/to/trained DHH models    ./prototxt/PB/train_val_dhh_12.txt    ip1 (hash layer output of videos)    path/to/saved file     batch_num    GPU id
 
-./build/tools/extract_features_binary path/to/trained DHH models ./prototxt/PB/train_val_dhh_12.txt merge_label (labels of videos) path/to/save binary file 
+./build/tools/extract_features_binary   path/to/trained DHH models    ./prototxt/PB/train_val_dhh_12.txt    merge_label (labels of videos)    path/to/saved file     batch_num    GPU id  
 ```
 
-And then you can modify the binary files path in matlab script, and run it in matlab environment to obtain the mAP result:
+And then you can modify the extracted binary files path in the matlab script which is provided in the matlab folder, and run it in matlab environment to obtain the mAP result:
 ```
 Evaluate_DHH.m
 ```
 
-We provide our trained DHH models for each dataset under each code length in our experiment for evaluation. You can download them [here](https://pan.baidu.com/s/1lVWcqujE8kMUqQLTIAEBzw) using the extracted codes：zic7 (BaiduCloud drive) if you want to use them.
+We also provide our trained DHH models for each dataset under each code length for evaluation. You can download them [here](https://pan.baidu.com/s/1lVWcqujE8kMUqQLTIAEBzw) using the extracted codes：zic7 (BaiduCloud drive) if you want to use them.
 
 # Contact
 If you have any problem about our code, feel free to contact shishi.qiao@vipl.ict.ac.cn or describe your problem in Issues.
