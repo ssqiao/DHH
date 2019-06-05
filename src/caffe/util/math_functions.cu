@@ -9,7 +9,7 @@
 #include "caffe/util/math_functions.hpp"
 
 namespace caffe {
-
+  
 template <>
 void caffe_gpu_gemm<float>(const CBLAS_TRANSPOSE TransA,
     const CBLAS_TRANSPOSE TransB, const int M, const int N, const int K,
@@ -425,7 +425,7 @@ __global__ void diag_kernel(const int n, const int M, const Dtype* x, Dtype* y) 
 template <typename Dtype>
 __global__ void diag_inverse_kernel(const int n, const int M, const Dtype* x, Dtype* y) {
   CUDA_KERNEL_LOOP(index, n) {
-  if (x[index*M+index] != 0.0)
+  if (x[index*M+index] != 0.0 && x[index*M+index] > 1e-9)
     y[index*M+index] = 1.0/x[index*M+index];
   }
 }

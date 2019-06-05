@@ -73,12 +73,12 @@ void CovlogmLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
   Dtype* tmp_data = tmp_.mutable_cpu_data();
   //Dtype* tmp2_data = tmp2_.mutable_cpu_data();
   
-  fstream output1,output2;
-  output1.open("/home/qiaoshishi/data_in.txt",ios::out|ios::app);
-  output1<<"batch:"<<iter_<<std::endl;
-  output2.open("/home/qiaoshishi/data_s.txt",ios::out|ios::app);
-  output2<<"batch:"<<iter_<<std::endl; 
-  // compute the logm of each covariance F'F+epsilon*I 
+  //fstream output1,output2;
+  //output1.open("/home/qiaoshishi/data_in.txt",ios::out|ios::app);
+  //output1<<"batch:"<<iter_<<std::endl;
+  //output2.open("/home/qiaoshishi/data_s.txt",ios::out|ios::app);
+  //output2<<"batch:"<<iter_<<std::endl; 
+  // compute the logm of each covariance F'F+epsilon*I  
   for (int i = 0; i < num; i++){
 	  int offset_top = top[0]->offset(i);
 	  int start = seidx_data[i*2];
@@ -88,7 +88,7 @@ void CovlogmLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
 	  // svd may change the input data
 	  caffe_copy(set_size*dim, bottom_data+offset_bottom_first, tmp_data);
 	  //caffe_scal(set_size*dim, Dtype(100.),tmp_data);
-	  output1<<"num:"<<i<<std::endl;
+	  //output1<<"num:"<<i<<std::endl;
 	  //LOG(INFO)<<tmp_data[0];
 	  /* for(int m = 0; m < set_size; m++){
 		  for(int n =0; n < dim; n++){
@@ -96,16 +96,16 @@ void CovlogmLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
 		  }
 		  output1<<std::endl;
 	  }*/
-	  output1<<tmp_data[0];
-	  output1<<std::endl; 
+	  //output1<<tmp_data[0];
+	  //output1<<std::endl; 
 	  
 	  caffe_cpu_gesvd(set_size, dim, tmp_data, sigular_data, U_data+offset_top, Vt_data+offset_top);
 	  caffe_cpu_diag(set_size, dim, set_size, sigular_data, S_data+offset_top);
-	  output2<<"num:"<<i<<std::endl;
-	  for(int m = 0; m < set_size; m ++){		  
-		  output2<<sigular_data[m]<<'\t';
-	  }
-	  output2<<std::endl;
+	  //output2<<"num:"<<i<<std::endl;
+	  //for(int m = 0; m < set_size; m ++){		  
+		//  output2<<sigular_data[m]<<'\t';
+	  //}
+	  //output2<<std::endl;
 	  caffe_cpu_gemm<Dtype>(CblasTrans,CblasNoTrans, dim, dim, set_size,Dtype(1.),S_data+offset_top,S_data+offset_top,Dtype(0.),tmp_data);
       caffe_axpy(dim*dim, epsilon_, Unit_data, tmp_data);
 	  caffe_cpu_diag_op(dim, dim, tmp_data, logC_data+offset_top, 2);
@@ -113,8 +113,8 @@ void CovlogmLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
 	  caffe_cpu_gemm<Dtype>(CblasTrans,CblasNoTrans,dim,dim,dim,Dtype(1.),Vt_data+offset_top,logC_data+offset_top,Dtype(0.),tmp_data);
 	  caffe_cpu_gemm<Dtype>(CblasNoTrans,CblasNoTrans,dim,dim,dim,Dtype(1.),tmp_data,Vt_data+offset_top,Dtype(0.),top_data+offset_top);
   }
-  output1.close();
-  output2.close(); 
+  //output1.close();
+  //output2.close(); 
   
 }
 
