@@ -28,11 +28,11 @@ We use YTC, PB and a subset containing 200 subjects of UMDFaces dataset in our e
 After downloading, you can directly use the lmdb files for training and testing DHH. Also you can convert the raw images together with split txt files to the LMDB format as we have provided for you.
 For video modality, you can use the following command for PB dataset as an example to convert the video clips:
 ```
-./build/tools/convert_imageset_set --resize_height=64 --resize_width=64 path/to/orig_imgs  path/to/train_test_fold  /path/to/list txt file  path/to/saved lmdb file
+./build/tools/convert_imageset_set --resize_height=64 --resize_width=64 path/to/orig_imgs_folder/  /path/to/train_shuffle.txt or test_shuffle.txt   path/to/train_test_fold    path/to/saved lmdb file
 ```
 For image modality, you can use the following command for PB dataset as an example to convert the still images:
 ```
-./build/tools/convert_imageset --resize_height=64 --resize_width=64 path/to/orig_imgs  path/to/list txt file path/to/saved lmdb file 
+./build/tools/convert_imageset --resize_height=64 --resize_width=64 path/to/orig_imgs_folder/    path/to/train_still.txt or test_still.txt    path/to/saved lmdb file 
 ```
 
 # Training
