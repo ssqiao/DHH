@@ -1,7 +1,7 @@
 # DHH
 Caffe implementation of our work entitled as "Deep Heterogeneous Hashing for Face Video Retrieval" (TIP2019 under review). For research use only, commercial use is not allowed.
 An illustration of the retrieval task:
-[!image](https://github.com/greatmanqss/DHH/blob/master/FaceVideoRetrieval.png)
+![image](https://github.com/greatmanqss/DHH/blob/master/FaceVideoRetrieval.png)
 
 
 # Prerequisites
