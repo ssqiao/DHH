@@ -1,8 +1,11 @@
 # DHH
 Caffe implementation of our work entitled as "Deep Heterogeneous Hashing for Face Video Retrieval" (TIP2019 under review). For research use only, commercial use is not allowed.
-An illustration of the retrieval task:
+
+An illustration of the retrieval task as follows:
 ![image](https://github.com/greatmanqss/DHH/blob/master/FaceVideoRetrieval.png)
 
+And the framework of our proposed method DHH:
+![image](https://github.com/greatmanqss/DHH/blob/master/DHH_framework.png)
 
 # Prerequisites
 Linux 14.04 (We simply tried it on 16.06 or high version but failed due to MKL issue)
