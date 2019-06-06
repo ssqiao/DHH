@@ -10,7 +10,7 @@ Caffe
 
 BLAS lib: Intel MKL V2017.1.132
 
-# Modification on Caffe
+# Modifications on Caffe
 - Add convert_imageset_set in the tools which converts video clips into lmdb format
 - Add extract_features_binary in the tools which extracts the outputs of one layer of a trained model into binary file
 - Modified db, db_leveldb, db_lmdb, data_reader, data_layer which deal with the image and video data in lmdb format during training and testing 
