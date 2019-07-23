@@ -69,18 +69,18 @@ train_set_binary(train_set_fea>=0.5) = 1;
 train_set_binary(train_set_fea<0.5) = 0;
 
 % YTC evalutation
-% s_v_dis_mtx = pdist2(test_still_feature',train_set_fea');
+% s_v_dis_mtx = pdist2(test_still_binary',train_set_binary', 'hamming');
 % s_v_map = compute_map(s_v_dis_mtx',test_still_label,train_set_label)
-% v_s_dis_mtx = pdist2(test_set_fea',train_still_feature');
+% v_s_dis_mtx = pdist2(test_set_binary',train_still_binary');
 % v_s_map = compute_map(v_s_dis_mtx',test_set_label,train_still_label)
 
 % save(['cross_s_v_dis_mtx_ytc_DHH_',num2str(nbits)],'s_v_dis_mtx');
 % save(['cross_v_s_dis_mtx_ytc_DHH_',num2str(nbits)],'v_s_dis_mtx');
 
 % PB evaluation
-s_v_dis_mtx = pdist2(train_still_binary',test_set_binary');
+s_v_dis_mtx = pdist2(train_still_binary',test_set_binary', 'hamming');
 s_v_map = compute_map(s_v_dis_mtx',train_still_label,test_set_label)
-v_s_dis_mtx = pdist2(train_set_binary',test_still_binary');
+v_s_dis_mtx = pdist2(train_set_binary',test_still_binary', 'hamming');
 v_s_map = compute_map(v_s_dis_mtx',train_set_label,test_still_label)
 
 % save(['cross_s_v_dis_mtx_pb_DHH_',num2str(nbits)],'s_v_dis_mtx');
