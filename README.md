@@ -7,6 +7,9 @@ An illustration of the retrieval task as follows:
 And the framework of our proposed method DHH:
 ![image](https://github.com/greatmanqss/DHH/blob/master/DHH_framework.png)
 
+# Citation
+If you use this code for your research, please consider citing our paper: Shishi Qiao, Ruiping Wang, Shiguang Shan, Xilin Chen. Deep Heterogeneous Hashing for Face Video Retrieval. IEEE Transactions on Image Processing 2019. 
+
 # Prerequisites
 Linux 14.04 (We simply tried it on 16.06 or high version but failed due to MKL issue)
 
