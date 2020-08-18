@@ -32,7 +32,7 @@ BLAS lib: Intel MKL V2017.1.132
 The compiling process is the same as caffe. You can refer to Caffe installation instructions [here](http://caffe.berkeleyvision.org/installation.html).
 
 # Datasets
-We use YTC, PB and a subset containing 200 subjects of UMDFaces dataset in our experiments. We have preprocessed these three datasets and provided both the raw images and the converted lmdb files for direct training and testing. You can download them [here](https://pan.baidu.com/s/1lVWcqujE8kMUqQLTIAEBzw) using the extracted codes：zic7 (BaiduCloud drive). And in the future, we will provide a download link on google drive.
+We use YTC, PB and a subset containing 200 subjects of UMDFaces dataset in our experiments. We have preprocessed these three datasets and provided both the raw images and the converted lmdb files for direct training and testing. You can download them [here](https://pan.baidu.com/s/1zmuoI3sxBim-YtsnFupWig) using the extracted codes：05go (BaiduCloud drive). And in the future, we will provide a download link on google drive.
 
 After downloading, you can directly use the lmdb files for training and testing DHH. Also you can convert the raw images together with split txt files to the LMDB format as we have provided for you.
 For video modality, you can use the following command for PB dataset as an example to convert the video clips:
@@ -45,7 +45,7 @@ For image modality, you can use the following command for PB dataset as an examp
 ```
 
 # Training
-We place the solver and net prototxt files in the prototxt folder. First, you need to download the pre-trained classification model [here](https://pan.baidu.com/s/1lVWcqujE8kMUqQLTIAEBzw) using the extracted codes：zic7 (BaiduCloud drive) for initilizing DHH and move it to ./models/. Then, you need to modify the corresponding paths in the solver and net prototxt files. Finaly, you can train DHH for each dataset using the followling command (here we use PB as an example):
+We place the solver and net prototxt files in the prototxt folder. First, you need to download the pre-trained classification model [here](https://pan.baidu.com/s/1zmuoI3sxBim-YtsnFupWig) using the extracted codes：05go (BaiduCloud drive) for initilizing DHH and move it to ./models/. Then, you need to modify the corresponding paths in the solver and net prototxt files. Finaly, you can train DHH for each dataset using the followling command (here we use PB as an example):
 ```
 ./build/tools/caffe train --solver ./prototxt/PB/solver_dhh_12.prototxt --weights ./models/PB/pb_classification_iter_5000.caffemodel
 ```
@@ -68,7 +68,7 @@ And then you can modify the extracted binary files path in the matlab script whi
 Evaluate_DHH.m
 ```
 
-We also provide our trained DHH models for each dataset under each code length for evaluation. You can download them [here](https://pan.baidu.com/s/1lVWcqujE8kMUqQLTIAEBzw) using the extracted codes：zic7 (BaiduCloud drive) if you want to use them.
+We also provide our trained DHH models for each dataset under each code length for evaluation. You can download them [here](https://pan.baidu.com/s/1zmuoI3sxBim-YtsnFupWig) using the extracted codes：05go (BaiduCloud drive) if you want to use them.
 
 # Contact
 If you have any problem about our code, feel free to contact shishi.qiao@vipl.ict.ac.cn or describe your problem in Issues.
