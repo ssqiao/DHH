@@ -71,4 +71,4 @@ Evaluate_DHH.m
 We also provide our trained DHH models for each dataset under each code length for evaluation. You can download them [here](https://pan.baidu.com/s/1mWgt7ufaoJ88iWk1vkuSXQ) using the extracted codes：m0d9 (BaiduCloud drive) if you want to use them.
 
 # Contact
-If you have any problem about our code, feel free to contact shishi.qiao@vipl.ict.ac.cn or describe your problem in Issues.
+If you have any problem about our code, feel free to contact shishi.qiao@vipl.ict.ac.cn, qiaoshishi14@mails.ucas.ac.cn or describe your problem in Issues.
