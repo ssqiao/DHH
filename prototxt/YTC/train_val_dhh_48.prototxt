@@ -560,8 +560,8 @@ layer {
 layer{
   name: "data_all"
   type: "Concat"
-  bottom: "ip1_n"
-  bottom: "ip1_s_n"
+  bottom: "ip1"
+  bottom: "ip1_s"
   top: "data_all"
   concat_param{
   concat_dim: 0
