@@ -1,5 +1,5 @@
 # DHH
-Caffe implementation of our TIP 2019 work entitled as "Deep Heterogeneous Hashing for Face Video Retrieval". For research use only, commercial use is not allowed.
+Caffe implementation of our TIP 2020 work entitled as "Deep Heterogeneous Hashing for Face Video Retrieval". For research use only, commercial use is not allowed.
 
 An illustration of the retrieval task as follows:
 ![image](https://github.com/greatmanqss/DHH/blob/master/FaceVideoRetrieval.png)
@@ -56,7 +56,7 @@ After this step, you can further improve the cross-modality retrieval performanc
 ```
 
 # Evaluation
-You can evaluate the mean Average Precision(mAP) result on each dataset with our provided evaluation scripts in matlab. First, you need to extract the binary codes and labels of videos and images using the following command (PB as an example):
+You can evaluate the mean Average Precision(mAP) result on each dataset with our provided evaluation scripts in matlab. First, you need to extract the binary codes and labels of videos (use the LMDB named XXX_train/test_shuffle_lmdb) and images (use the LMDB named XXX_train/test_still_lmdb) using the following command (PB as an example):
 ```
 ./build/tools/extract_features_binary   path/to/trained DHH models    ./prototxt/PB/train_val_dhh_12.txt    ip1 (hash layer output of videos)    path/to/saved file     batch_num    GPU id
 
